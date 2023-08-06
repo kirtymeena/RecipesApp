@@ -1,0 +1,95 @@
+@use "../utils/variables" as *;
+@use "../utils/breakpoint" as *;
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: $alice-blue;
+}
+
+.sub__title {
+  text-align: center;
+
+  font-size: 18px;
+  color: $grey;
+  @include md {
+    text-align: left;
+  }
+}
+.home__wrapper {
+  @include md {
+    background-image: url("../../../src/assets/bg-food.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 30rem;
+    align-items: flex-start;
+    padding-top: 4rem;
+  }
+
+  width: 100vw;
+  height: 70vh;
+  background-color: $neutral-green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.home__title {
+  font-size: 45px;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+  @include md {
+    text-align: left;
+    width: 60%;
+    font-size: 50px;
+    line-height: 5rem;
+    margin-bottom: 2rem;
+  }
+  @include lg {
+    font-size: 70px;
+  }
+  @include xlg {
+    width: 70rem;
+  }
+}
+
+.search__option {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+  @include md {
+    justify-content: flex-start;
+  }
+}
+.search__input {
+  min-width: 20rem;
+  max-width: 40rem;
+  height: 3rem;
+  background-color: white;
+  border-radius: 18px;
+  border: none;
+  padding-inline: 1rem;
+  font-size: 17px;
+}
+
+.search__input:focus {
+  border: 2px solid $light-green;
+  outline: $light-green;
+}
+
+.search__btn {
+  display: none !important;
+  @include md {
+    display: block !important;
+    width: 20rem;
+    background-color: $light-green !important;
+    border-radius: 20px !important;
+    height: 3rem;
+  }
+}

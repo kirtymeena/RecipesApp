@@ -1,0 +1,27 @@
+@use "./breakpoint" as *;
+@use "./variables" as *;
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  padding-inline: 2rem;
+  padding-inline: 1rem;
+  @include md {
+    padding-block: 1rem;
+    padding-inline: 4rem;
+  }
+}
+
+h1,h2,h3,h4,h5,h6{
+  opacity: 0.9;
+}
+p{
+  opacity: 0.8;
+}
+
+.semi__bold{
+  color:$neutral-800;
+  font-weight: 600;
+}

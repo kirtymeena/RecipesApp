@@ -1,0 +1,32 @@
+@use "../utils/breakpoint" as *;
+
+.categorgy__list__wrapper {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.categoryList__header {
+  text-align: center;
+  font-size: 20px;
+  @include md {
+    font-size: 40px;
+  }
+}
+
+.meal__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.meal__list{
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+}
+
+.meal__pagination{
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,29 @@
+@use "../utils/breakpoint" as *;
+@use "../utils/variables" as *;
+
+.category__wrapper {
+  background-color: $alice-blue;
+  justify-content: center;
+  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  @include md {
+    gap: 4rem;
+    padding-inline: 5rem;
+    justify-content: flex-start;
+  }
+}
+
+.category__header {
+  text-align: center;
+  padding-block: 1rem;
+  font-size: 30px;
+  font-weight: 500;
+  opacity: 0.8;
+  p {
+    padding-block:1rem;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+  }
+}
