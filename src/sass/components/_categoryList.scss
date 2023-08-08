@@ -4,7 +4,9 @@
   padding-top: 5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  @include md {
+    justify-content: center;
+  }
   align-items: center;
   gap: 2rem;
 }
@@ -24,7 +26,7 @@
 
   font-size: 20px;
   gap: 2rem;
-  overflow-x:scroll;
+  overflow-x: scroll;
   padding-block: 1rem;
   @include md {
     font-size: 40px;
@@ -38,7 +40,7 @@
     justify-content: flex-start;
     padding-inline: 1rem;
   }
-  @include xlg{
+  @include xlg {
     justify-content: center;
   }
   margin-top: 10rem;
@@ -56,4 +58,3 @@
   display: flex;
   justify-content: center;
 }
-
