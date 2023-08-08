@@ -7,12 +7,12 @@ function Categories() {
         <div>
             <div className='category__header'>
                 Popular Categories
-                <p>We Provide a variety of food and beverage recipes with high taste</p>
+                <p className='sub__header'>We Provide a variety of food and beverage recipes with high taste</p>
             </div>
             <div className='category__wrapper container'>
                 {
                     !isFetching && data.categories.map(category =>
-                        <Link to={`${category.strCategory}/list`} key={category.idCategory}>
+                        <Link to={`${category.strCategory}/list`} key={category.idCategory} className='link'>
                             <CategoryCard title={category.strCategory} thumbnail={category.strCategoryThumb} />
                         </Link>
                     )

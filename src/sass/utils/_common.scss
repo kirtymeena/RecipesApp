@@ -14,14 +14,27 @@ body {
   }
 }
 
-h1,h2,h3,h4,h5,h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   opacity: 0.9;
 }
-p{
+p {
   opacity: 0.8;
 }
 
-.semi__bold{
-  color:$neutral-800;
+.semi__bold {
+  color: $neutral-800;
   font-weight: 600;
+}
+
+.link {
+  text-decoration: none;
+  color: $neutral-800;
+}
+.link:hover {
+  color: $light-green;
 }

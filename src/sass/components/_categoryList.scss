@@ -4,12 +4,28 @@
   padding-top: 5rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
 }
 
 .categoryList__header {
+  position: absolute;
+  left: 0;
+  @include md {
+    position: static;
+    gap: 1.2rem;
+    justify-content: center;
+  }
+  width: 100%;
+
   text-align: center;
+  display: flex;
+
   font-size: 20px;
+  gap: 2rem;
+  overflow-x:scroll;
+  padding-block: 1rem;
   @include md {
     font-size: 40px;
   }
@@ -17,16 +33,27 @@
 
 .meal__wrapper {
   display: flex;
+  @include md {
+    margin-top: 0;
+    justify-content: flex-start;
+    padding-inline: 1rem;
+  }
+  @include xlg{
+    justify-content: center;
+  }
+  margin-top: 10rem;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 1rem;
+  justify-content: center;
+  gap: 2rem;
 }
-.meal__list{
-    display: flex;
-    flex-direction: column;
-    gap:2rem;
+.meal__list {
+  display: flex;
+  flex-direction: column;
 }
 
-.meal__pagination{
-    display: flex;
-    justify-content: center;
+.meal__pagination {
+  display: flex;
+  justify-content: center;
 }
+

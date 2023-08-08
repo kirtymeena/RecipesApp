@@ -1,19 +1,17 @@
 /* eslint-disable react/prop-types */
-import coffee from "../assets/takeawayCoffee.png";
-function CategoryCard({ title, thumbnail }) {
+function CategoryCard({ title, thumbnail, variant, selectedCategory }) {
     return (
-        <div className='category__card'>
-            <div className='category__image'>
-                
-                <img src={thumbnail} alt={title} />
+        <div className="card__wrapper">
+
+            <div className={variant ? `category__card-sm ${selectedCategory == title ? 'green-border' : ''}` : 'category__card'}>
+                <div className={variant ? 'category__image-sm' : 'category__image'}>
+                    <img src={thumbnail} alt={title} />
+                </div>
             </div>
-            <div className='category'>
+            <div className={variant ? `category__title-sm ${selectedCategory == title ? 'selected' : ''}` : 'category__title'}>
                 {title}
             </div>
-            <div className='category__description'>
-                {/* description */}
-            </div>
-        </div>
+        </div >
     )
 }
 

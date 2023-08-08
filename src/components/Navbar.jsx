@@ -16,6 +16,9 @@ function Navbar() {
                         <Link to="/" className="link">Recipes</Link>
                     </div>
                 </div>
+                <div>
+                    <input type="search" className="search__bar" placeholder="Search a Recipe"/>
+                </div>
                 <div className='nav__auth'>
                     <div>
                         <Link to="/" className="link">Login/Sign up</Link>

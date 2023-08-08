@@ -4,7 +4,7 @@
 .category__wrapper {
   background-color: $alice-blue;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
   display: flex;
   flex-wrap: wrap;
   @include md {
@@ -21,9 +21,14 @@
   font-weight: 500;
   opacity: 0.8;
   p {
-    padding-block:1rem;
+    padding-block: 1rem;
     font-size: 20px;
     font-weight: 400;
     text-align: center;
   }
+}
+
+
+.sub__header{
+  padding-inline:1rem;
 }

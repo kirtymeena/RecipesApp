@@ -1,47 +1,105 @@
 @use "../utils/breakpoint" as *;
 @use "../utils/variables" as *;
 
-.category__card {
-  @include md {
-    width: 18rem;
-    height: 20rem;
-  }
-  width: 10rem;
-  border-radius: 18px;
+%catImage {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+%cateCard {
+  border-radius: 50%;
   transition: 0.3s box-shadow ease-in-out;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 0.5rem;
   padding-block: 1rem;
-  padding-inline: 0.5rem;
+  padding-inline: 1rem;
   cursor: pointer;
+  aspect-ratio: 1;
+  gap: 1rem;
+  background-color: white;
+  transition: 0.3s box-shadow ease-in;
 }
 
-.category__card:hover {
-  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
-    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+.card__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category__card {
+  @include md {
+    width: 10rem;
+    height: 10rem;
+    gap: 2rem;
+    padding-inline: 2rem;
+  }
+  width: 7rem;
+  height: 7rem;
+  @extend %cateCard;
 }
 
 .category__image {
+  width: 6rem;
+  height: 6rem;
   @include md {
-    width: 15rem;
-    height: 15rem;
+    width: 10rem;
+    height: 10rem;
   }
-  width: 8rem;
-  height: 8rem;
   border-radius: 50%;
-  aspect-ratio: 1;
-  background-color: white;
-
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    @extend %catImage;
   }
 }
 
-.category {
-  color: $grey;
-  cursor:default;
+// small
+.category__image-sm {
+  width: 5rem;
+  height: 5rem;
+  img {
+    @extend %catImage;
+  }
+}
+
+.category__card-sm {
+  @include md {
+    width: 5rem;
+    height: 5rem;
+    gap: 2rem;
+    padding-inline: 2rem;
+    border: 2px solid $neutral-300;
+  }
+  width: 5rem;
+  height: 5rem;
+  @extend %cateCard;
+}
+
+.green-border{
+  border:2px solid $light-green
+}
+
+.category__title {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+.category__title-sm {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+}
+
+.category__card:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.selected {
+  color: $light-green;
 }
