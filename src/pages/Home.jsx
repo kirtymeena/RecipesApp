@@ -20,6 +20,8 @@ function Home() {
             <div className='cateogry__section'>
                 <Categories />
             </div>
+            <div>
+            </div>
         </div>
     )
 }

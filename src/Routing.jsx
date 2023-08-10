@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes, Outlet } from "react-router-dom
 import Home from "./pages/Home"
 import Navbar from "./components/Navbar"
 import CategoryList from "./pages/CategoryList"
+import Footer from "./components/Footer"
 
 
 function Routing() {
@@ -10,6 +11,7 @@ function Routing() {
       <div>
         <Navbar />
         <Outlet />
+        <Footer />
       </div>
     )
   }

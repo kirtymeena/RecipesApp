@@ -1,0 +1,21 @@
+@use "../utils/mixin" as *;
+@use "../utils/variables" as *;
+
+footer {
+//   border: 2px solid red;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: $alice-blue;
+  .credit {
+    font-size: 18px;
+    span {
+      color: $dark-orange;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
