@@ -20,7 +20,7 @@ function CategoryCard({ title, thumbnail, variant }) {
                     <img src={thumbnail} alt={title} />
                 </div>
             </div>
-            <div className={variant ? `category__title - sm ${category === title ? 'selected' : ''} ` : 'category__title'}>
+            <div className={variant ? `category__title-sm ${category === title ? 'selected' : ''} ` : 'category__title'}>
                 {title}
             </div>
         </div >
