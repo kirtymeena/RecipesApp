@@ -9,20 +9,15 @@ function CategoryList() {
     const { data, isFetching } = useFetchCategoryQuery();
     const { data: mealsData, isFetching: isMealFetching } = useFetchMealByCategoryQuery(category);
 
-    const handleSelectedCategory = (e) => {
-        console.log("id", e.target.id, e.target.tagName)
-
-    }
-
     return (
         <div className='categorgy__list__wrapper'>
             {
                 isFetching || isMealFetching ? <Loader /> :
                     <>
-                        <div className=" container categoryList__header semi__bold">
+                        <div className="container categoryList__header semi__bold">
                             {
                                 !isFetching && data.categories.map(category =>
-                                    <Link to={`/${category.strCategory}/list`} id="dfjkg" style={{ border: "2px solid red" }} key={category.idCategory} className="link" onClick={(e) => handleSelectedCategory(e, category.strCategory)}>
+                                    <Link to={`/${category.strCategory}/list`} key={category.idCategory} className="link" id={category.strCategory}>
                                         <CategoryCard title={category.strCategory} thumbnail={category.strCategoryThumb} variant="sm" />
                                     </Link>
                                 )
@@ -36,12 +31,9 @@ function CategoryList() {
                                             <CategoryListCard thumbnail={meal.strMealThumb} title={meal.strMeal} />
                                         </div>
                                     )
-
                                 }
                             </div>
-                            {/* <div className="meal__pagination">
-                    <Pagination count={count} color="primary" onChange={(e) => handlePagination(e)} />
-                </div> */}
+
                         </div>
                     </>
             }
