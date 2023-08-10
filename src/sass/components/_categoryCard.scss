@@ -77,11 +77,13 @@
   }
   width: 5rem;
   height: 5rem;
+  border: 2px solid $neutral-300;
+
   @extend %cateCard;
 }
 
-.green-border{
-  border:2px solid $dark-orange
+.green-border {
+  border: 2px solid $dark-orange;
 }
 
 .category__title {

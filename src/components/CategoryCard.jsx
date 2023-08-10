@@ -15,7 +15,7 @@ function CategoryCard({ title, thumbnail, variant }) {
     return (
         <div className="card__wrapper" ref={category === title ? refScroll : null} id={`${category === title ? "scrollRef" : ""} `} >
 
-            <div className={variant ? `category__card - sm ${category === title ? 'green-border' : ''} ` : 'category__card'}>
+            <div className={variant ? `category__card-sm ${category === title ? 'green-border' : ''} ` : 'category__card'}>
                 <div className={variant ? 'category__image-sm' : 'category__image'}>
                     <img src={thumbnail} alt={title} />
                 </div>
