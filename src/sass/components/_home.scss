@@ -79,8 +79,8 @@
 }
 
 .search__input:focus {
-  border: 2px solid $light-green;
-  outline: $light-green;
+  border: 2px solid $dark-orange;
+  outline: $dark-orange;
 }
 
 .search__btn {
@@ -88,7 +88,7 @@
   @include md {
     display: block !important;
     width: 20rem;
-    background-color: $light-green !important;
+    background-color: $dark-orange !important;
     border-radius: 20px !important;
     height: 3rem;
   }
