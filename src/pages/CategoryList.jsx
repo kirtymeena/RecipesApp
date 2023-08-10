@@ -1,31 +1,15 @@
-import { useEffect, useRef, useState } from "react"
 import { useFetchCategoryQuery, useFetchMealByCategoryQuery } from "../store/meals-api-slice"
 import { Link, useParams } from "react-router-dom";
 import CategoryCard from "../components/CategoryCard";
-// import Pagination from '@mui/material/Pagination';
 import CategoryListCard from "../components/CategoryListCard";
 import Loader from "../components/Loader"
 
 function CategoryList() {
     const { category } = useParams();
-    // const [count, setCount] = useState();
-    const [selectedCategory, setSelectedCategory] = useState('')
     const { data, isFetching } = useFetchCategoryQuery();
     const { data: mealsData, isFetching: isMealFetching } = useFetchMealByCategoryQuery(category);
-    const ref = useRef();
-    // const navigate = useNavigate();
-    // useEffect(() => {
-    //     if (!isFetching) {
-    //         setCount(Math.ceil(data.meals.length / 10))
-    //     }
-    // }, [isFetching])
 
-    useEffect(() => {
-
-    }, [selectedCategory])
-
-    const handleSelectedCategory = (e, strCat) => {
-        setSelectedCategory(strCat);
+    const handleSelectedCategory = (e) => {
         console.log("id", e.target.id, e.target.tagName)
 
     }
@@ -39,7 +23,7 @@ function CategoryList() {
                             {
                                 !isFetching && data.categories.map(category =>
                                     <Link to={`/${category.strCategory}/list`} id="dfjkg" style={{ border: "2px solid red" }} key={category.idCategory} className="link" onClick={(e) => handleSelectedCategory(e, category.strCategory)}>
-                                        <CategoryCard title={category.strCategory} thumbnail={category.strCategoryThumb} variant="sm" selectedCategory={selectedCategory} />
+                                        <CategoryCard title={category.strCategory} thumbnail={category.strCategoryThumb} variant="sm" />
                                     </Link>
                                 )
                             }
