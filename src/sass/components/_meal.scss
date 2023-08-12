@@ -100,8 +100,9 @@
 .bookmark{
   position: absolute;
   right:0;
+  top:0;
   color:$rose;
-  padding:1rem;
+  padding-inline:0.5rem;
   cursor: pointer;
   background-color: $rose-400;
   border-radius: 50%;
