@@ -2,9 +2,11 @@
 @use "../utils/variables" as *;
 
 footer {
-//   border: 2px solid red;
-  height: 5rem;
+  border-top: 1px solid $neutral-300;
+  height: auto;
   display: flex;
+  padding-inline:2rem;
+  padding-block:1rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -18,4 +20,12 @@ footer {
       cursor: pointer;
     }
   }
+}
+
+.git__logo{
+  display: flex;
+  gap:1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }

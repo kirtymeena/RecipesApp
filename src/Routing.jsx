@@ -4,11 +4,10 @@ import Navbar from "./components/Navbar"
 import CategoryList from "./pages/CategoryList"
 import Footer from "./components/Footer"
 
-
 function Routing() {
   const Layout = () => {
     return (
-      <div>
+      <div className="layout">
         <Navbar />
         <Outlet />
         <Footer />
@@ -21,7 +20,7 @@ function Routing() {
       <Routes>
         <Route element={<Layout />}>
           <Route index path="/" element={<Home />} />
-          <Route index path="/:category/list" element={<CategoryList />} />
+          <Route path="/:category/list" element={<CategoryList />} />
         </Route>
       </Routes>
     </Router>
