@@ -101,6 +101,12 @@
   position: absolute;
   right:0;
   color:$rose;
-  padding-inline:1rem;
+  padding:1rem;
   cursor: pointer;
+  background-color: $rose-400;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -14,6 +14,7 @@ function Meal() {
         console.log(data)
         getEmbedId()
         getIngredients()
+        console.log(ingredients)
         // getRecipe();
     }, [!isFetching])
 
@@ -31,15 +32,16 @@ function Meal() {
         let measureList = []
         if (data !== undefined) {
             for (let i in data.meals[0]) {
-                if (i.includes("strIngredient") && data.meals[0][i] !== "") {
+                if (i.includes("strIngredient") && data.meals[0][i] !== "" && data.meals[0][i] !== null) {
                     ingredientsList.push(data.meals[0][i])
 
                 }
-                if (i.includes("strMeasure")) {
+                if (i.includes("strMeasure") && data.meals[0][i] !== "" && data.meals[0][i] !== null) {
                     measureList.push(data.meals[0][i])
                 }
 
             }
+            console.log(ingredientsList, measureList)
         }
 
         setIngredients(ingredientsList)
@@ -52,6 +54,7 @@ function Meal() {
         return data.meals[0].strInstructions.split(".");
 
     }
+
     return (
         isFetching ?
             <div className="loader">
@@ -133,7 +136,7 @@ function Meal() {
                                 {
                                     ingredients.map((ingredient, idx) =>
                                         <li key={ingredient} className="info">
-                                            <span>{ingredient}  - </span>  <span> {measures[idx]}</span>
+                                            <span>{ingredient} : </span>  <span>  {measures[idx]}</span>
                                         </li>
                                     )
                                 }
