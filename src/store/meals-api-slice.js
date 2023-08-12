@@ -19,9 +19,14 @@ export const apiSlice = createApi({
                 query(category) {
                     return `filter.php?c=${category}`
                 }
+            }),
+            fetchMealById: builder.query({
+                query(id) {
+                    return `/lookup.php?i=${id}`
+                }
             })
         }
     }
 });
 
-export const { useFetchCategoryQuery, useFetchMealByCategoryQuery } = apiSlice;
+export const { useFetchCategoryQuery, useFetchMealByCategoryQuery, useFetchMealByIdQuery } = apiSlice;

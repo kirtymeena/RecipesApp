@@ -1,0 +1,116 @@
+@use "../utils/variables" as *;
+@use "../utils/breakpoint" as *;
+
+.details__wrapper {
+  width: 100%;
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 100vh;
+}
+
+.youtube__video {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4rem;
+}
+
+.meal__details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ingredients {
+  width: 100%;
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 18px;
+  padding-block:1rem;
+
+  background-color: $light-orange;
+  div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .ingredient__list {
+    width: 100%;
+    li {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      div:last-child {
+        padding-left: 1rem;
+        text-align: right;
+        font-weight: 300;
+      }
+    }
+  }
+  @include md {
+    flex: 2;
+  }
+  @include lg {
+    flex: 1;
+    .ingredient__list {
+      li {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        div:last-child {
+          padding-left: 1rem;
+          text-align: right;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+
+.instrcutions {
+  width: 100%;
+  padding-inline: 1rem;
+  background-color: $alice-blue;
+  border-radius: 18px;
+  @include md {
+    flex: 2;
+  }
+}
+.ingredients__title {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+.title {
+  text-align: center;
+  font-weight: 500;
+  font-size: 30px;
+  color: $dark-orange;
+}
+.ingredient__list {
+  li {
+    list-style-type: none;
+    padding-inline: 1rem;
+    margin-block: 1rem;
+  }
+  padding-block: 2rem;
+}
+
+.meal__image {
+  width: 20rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+  }
+}
+
+.instruction__text{
+    
+}

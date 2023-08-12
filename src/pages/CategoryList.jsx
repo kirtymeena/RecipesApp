@@ -43,7 +43,9 @@ function CategoryList() {
                                         {
                                             !isMealFetching && mealsData.meals.map(meal =>
                                                 <div key={meal.idMeal}>
-                                                    <CategoryListCard thumbnail={meal.strMealThumb} title={meal.strMeal} />
+                                                    <Link to={`/${category}/${meal.strMeal}/${meal.idMeal}`} className="link">
+                                                        <CategoryListCard thumbnail={meal.strMealThumb} title={meal.strMeal} />
+                                                    </Link>
                                                 </div>
                                             )
                                         }
