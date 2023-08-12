@@ -5,7 +5,8 @@
   width: 100%;
   padding-top: 5rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem;
   min-height: 100vh;
 }
@@ -18,101 +19,88 @@
   gap: 4rem;
 }
 
-.meal__details {
+.instructions {
+  position: relative;
+  @include md {
+    flex: 2;
+  }
+  padding: 1rem;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
+  flex-direction: column;
 }
 
-.ingredients {
-  width: 100%;
-  margin: 0 auto;
-  width: 100%;
-  border-radius: 18px;
-  padding-block: 1rem;
-
-  background-color: $light-orange;
-  div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .ingredient__list {
-    width: 100%;
-    li {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      div:last-child {
-        padding-left: 1rem;
-        text-align: right;
-        font-weight: 300;
-      }
-    }
-  }
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap:2rem;
   @include md {
-    flex: 2;
-  }
-  @include lg {
-    flex: 1;
-    .ingredient__list {
-      li {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        div:last-child {
-          padding-left: 1rem;
-          text-align: right;
-          font-weight: 300;
-        }
-      }
-    }
+    padding: 1rem;
   }
 }
 
-.instrcutions {
-  width: 100%;
-  padding-inline: 1rem;
-  background-color: $alice-blue;
-  border-radius: 18px;
-  @include md {
-    flex: 2;
-  }
-}
-.ingredients__title {
-  text-align: center;
-  padding-bottom: 1rem;
-}
-.title {
-  text-align: center;
-  font-weight: 500;
-  font-size: 30px;
-  color: $dark-orange;
-}
-.ingredient__list {
-  li {
-    list-style-type: none;
-    padding-inline: 1rem;
-    margin-block: 1rem;
-  }
-  padding-block: 2rem;
+.no-bg{
+  background-color: transparent !important;
+  border: 2px solid $grey-200;
 }
 
 .meal__image {
-  @include md {
-    width: 20rem;
-  }
-  margin: 0 auto;
-  margin-top: 1rem;
+  width: 100%;
   img {
     width: 100%;
+    height: 20rem;
     object-fit: cover;
-    border-radius: 18px;
   }
 }
 
-.instruction__text {
+.meal-title {
+  font-size: 30px;
+  text-align: center;
+  padding-block: 1rem;
+}
+
+.meal__sub {
+  font-size: 20px;
+  padding-block: 1rem;
+  font-weight: 500;
+}
+
+.instruction__list {
+  padding-inline: 1rem;
+  li {
+    padding-bottom: 1rem;
+  }
+}
+
+.info__card {
+  background-color: $light-orange;
+  border-radius: 8px;
+  padding-inline: 2rem;
   padding-block: 2rem;
+}
+.info__list {
+  li {
+    list-style-type: none;
+    margin-bottom: 1rem;
+  }
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  span:first-child {
+    font-weight: 500;
+  }
+  span:last-child {
+    font-weight: 300;
+  }
+}
+
+.bookmark{
+  position: absolute;
+  right:0;
+  color:$rose;
+  padding-inline:1rem;
+  cursor: pointer;
 }
