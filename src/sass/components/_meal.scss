@@ -30,7 +30,7 @@
   margin: 0 auto;
   width: 100%;
   border-radius: 18px;
-  padding-block:1rem;
+  padding-block: 1rem;
 
   background-color: $light-orange;
   div {
@@ -101,7 +101,9 @@
 }
 
 .meal__image {
-  width: 20rem;
+  @include md {
+    width: 20rem;
+  }
   margin: 0 auto;
   margin-top: 1rem;
   img {
@@ -111,6 +113,6 @@
   }
 }
 
-.instruction__text{
-    
+.instruction__text {
+  padding-block: 2rem;
 }
