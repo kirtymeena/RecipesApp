@@ -3,6 +3,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  height: 100%;
 }
 
 .container {
@@ -43,7 +44,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
 }
 
 .display__error {
