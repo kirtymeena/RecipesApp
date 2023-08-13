@@ -129,8 +129,6 @@ function Meal() {
                             </ul>
                         </div>
 
-
-
                         <div className="info__card no-bg">
                             <ul className="info__list">
                                 {
@@ -143,7 +141,6 @@ function Meal() {
                             </ul>
                         </div>
                     </div>
-
                 </div >
                 :
                 <div className="display__error">
