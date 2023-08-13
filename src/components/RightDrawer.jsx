@@ -6,7 +6,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import { Link } from 'react-router-dom';
 function RightDrawer() {
     const [state, setState] = React.useState({
         right: false,
@@ -41,7 +41,9 @@ function RightDrawer() {
                 </ListItem>
                 <ListItem disablePadding>
                     <ListItemButton>
-                        <ListItemText primary={"Login/Register"} />
+                        <Link to="/auth" className='link'>
+                            <ListItemText primary={"Login/Register"} />
+                        </Link>
                     </ListItemButton>
                 </ListItem>
 
