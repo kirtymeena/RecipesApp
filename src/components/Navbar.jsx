@@ -5,6 +5,7 @@ import { useFetchMealByNameQuery } from "../store/meals-api-slice"
 import { useEffect, useState } from "react";
 function Navbar() {
     const [name, setName] = useState(null)
+    const [selectedSearchQuery, setSelectedSearchQuery] = useState(false)
     const { data, isFetching } = useFetchMealByNameQuery(name);
 
     const handleSearchquery = (e) => {
@@ -62,16 +63,18 @@ function Navbar() {
                     </div>
                 </div>
                 <div>
-                    <input type="search" value={name} onChange={throttleSearch} className="search__bar" placeholder="Search a Recipe" />
+                    <input onFocus={() => setSelectedSearchQuery(false)} type="search" value={name} onChange={throttleSearch} className="search__bar" placeholder="Search a Recipe" />
                     <div className="search__result">
                         {
                             !isFetching && data.meals !== null && data.meals.map(result =>
-                                <div className="meal__search" key={result.idMeal}>
-                                    {result.strMeal}
-                                    <div>
-                                        <img src={result.strMealThumb} alt="meal" />
+                                <Link style={{ display: selectedSearchQuery ? "none" : "" }} onClick={() => setSelectedSearchQuery(true)} to={`/${result.strCategory}/${result.strMeal}/${result.idMeal}`} key={result.idMeal} className="link">
+                                    <div className="meal__search" >
+                                        {result.strMeal}
+                                        <div>
+                                            <img src={result.strMealThumb} alt="meal" />
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                             )
                         }
                     </div>
