@@ -3,6 +3,9 @@ import logo from "../assets/pineapple.png"
 import { Link } from 'react-router-dom'
 import { useFetchMealByNameQuery } from "../store/meals-api-slice"
 import { useEffect, useState } from "react";
+import RightDrawer from "./RightDrawer";
+import { signInWithGoogle } from "../firebase";
+
 function Navbar() {
     const [name, setName] = useState(null)
     const [selectedSearchQuery, setSelectedSearchQuery] = useState(false)
@@ -40,14 +43,10 @@ function Navbar() {
     const throttleSearch = throttle(handleSearchquery, 300)
 
     useEffect(() => {
-        console.log(isFetching, name)
-        if (!isFetching) {
-            console.log(data)
-        }
         if (name === "") {
             setName(null)
         }
-    }, [isFetching, name])
+    }, [name])
     return (
         <nav className='navbar'>
             <div className='logo'>
@@ -62,7 +61,7 @@ function Navbar() {
                         <Link to="/" className="link">Recipes</Link>
                     </div>
                 </div>
-                <div>
+                <div className="nav__search">
                     <input onFocus={() => setSelectedSearchQuery(false)} type="search" value={name} onChange={throttleSearch} className="search__bar" placeholder="Search a Recipe" />
                     <div className="search__result">
                         {
@@ -81,9 +80,13 @@ function Navbar() {
                 </div>
                 <div className='nav__auth'>
                     <div>
-                        <Link to="/" className="link">Login/Sign up</Link>
+                        <Link to="/auth" className="link">Login/Sign up</Link>
                     </div>
 
+                </div>
+                <div className="hamburger">
+                    {/* <MenuIcon /> */}
+                    <RightDrawer />
                 </div>
             </div>
         </nav>

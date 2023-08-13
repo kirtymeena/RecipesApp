@@ -16,7 +16,7 @@ function CategoryList() {
             {
                 isFetching || isMealFetching ?
                     <div className="loader">
-                        <Loader />
+                        <Loader /> Loading The Dish
                     </div> :
                     <>
                         {

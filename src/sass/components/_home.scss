@@ -102,12 +102,13 @@
 }
 
 .search__btn {
-  display: none !important;
+  // display: none !important;
+  width: 100%;
   @include md {
-    display: block !important;
     width: 20rem;
-    background-color: $dark-orange !important;
-    border-radius: 20px !important;
-    height: 3rem;
   }
+  display: block !important;
+  background-color: $dark-orange !important;
+  border-radius: 20px !important;
+  height: 3rem;
 }

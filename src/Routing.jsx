@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar"
 import CategoryList from "./pages/CategoryList"
 import Footer from "./components/Footer"
 import Meal from "./pages/Meal"
+import Auth from "./auth/Auth"
 
 function Routing() {
   const Layout = () => {
@@ -24,6 +25,7 @@ function Routing() {
           <Route path="/:category/list" element={<CategoryList />} />
           <Route path="/:category/:meal/:id" element={<Meal />} />
         </Route>
+        <Route path="/auth" element={<Auth />} />
       </Routes>
     </Router>
 

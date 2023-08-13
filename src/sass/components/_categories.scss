@@ -7,6 +7,7 @@
   gap: 1.5rem;
   display: flex;
   flex-wrap: wrap;
+  padding-block:1rem;
   @include md {
     gap: 4rem;
     padding-inline: 5rem;
@@ -31,4 +32,13 @@
 
 .sub__header{
   padding-inline:1rem;
+}
+
+.hamburger{
+  display: block;
+  cursor: pointer;
+
+  @include md{
+    display: none;
+  }
 }
