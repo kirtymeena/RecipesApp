@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import { useDispatch } from "react-redux";
 import { getUserData, showAuth } from "../store/features/authSlice";
 import { useNavigate } from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
 
 function Auth() {
     const [showDisplayName, setShowDisplayName] = useState(false);
@@ -63,11 +64,14 @@ function Auth() {
         setFormData(data)
     }
 
-
+    const handleClose = () => {
+        dispatch(showAuth({ showAuthForm: false }))
+    }
     return (
         <div className="auth__wrapper">
             <form className="auth__form">
                 <div>
+                    <CloseIcon sx={{ position: "absolute", right: "1rem", top: "1rem", cursor: "pointer" }} onClick={handleClose} />
                     <p className="form__header">{showDisplayName ? "Register" : "Login"} to Fooders</p>
                 </div>
                 <TextField label="Email" required name="email" id="outlined-size-normal" onChange={handleFormData} />
