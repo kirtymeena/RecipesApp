@@ -1,5 +1,5 @@
 import * as React from 'react';
-import logo from "../assets/pineapple.png"
+import logo from "../assets/logo.png"
 import { Link, useNavigate } from 'react-router-dom'
 import { useFetchMealByNameQuery } from "../store/meals-api-slice"
 import { useEffect, useState } from "react";
@@ -28,7 +28,7 @@ function Navbar() {
     };
 
     const displayName = useSelector(state => {
-        if (state.auth.userData!==null)
+        if (state.auth.userData !== null)
             return state.auth.userData.user_metadata.name
     })
 
@@ -62,7 +62,7 @@ function Navbar() {
     }
 
     const throttleSearch = throttle(handleSearchquery, 300)
-
+    
     async function signOut() {
         const { error } = await supabase.auth.signOut()
         console.log("logout", error)
@@ -136,13 +136,13 @@ function Navbar() {
                                     TransitionComponent={Fade}
                                 >
                                     <MenuItem onClick={handleClose} disabled>{displayName}</MenuItem>
-                                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                                    <MenuItem onClick={handleClose}>Bookmarks</MenuItem>
                                     <MenuItem onClick={signOut}>Logout</MenuItem>
                                 </Menu>
                             </div>
                             :
                             <div>
-                                <span className="link" onClick={() => dispatch(showAuth({ showAuthForm: true }))}>
+                                <span className="link" onClick={() => dispatch(showAuth(true))}>
                                     Login/Register
                                 </span>
                             </div>

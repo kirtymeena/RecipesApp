@@ -10,23 +10,45 @@
 
 .sub__title {
   text-align: center;
-
   font-size: 18px;
-  color: $grey;
+  color: $alice-blue;
   @include md {
     text-align: left;
   }
 }
+.home__wrapper::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30rem;
+  height: 35rem;
+  opacity: 0.4;
+  background-image: url("../../../src/assets/mobilebg.png");
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+  @include md{
+    background-image: none
+
+  }
+}
 .home__wrapper {
   width: 100%;
-  height: 63vh;
-  background-color: $bg-home;
+  height: 90vh;
+  background-color: #009688;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   padding-top: 8rem;
+  // background-image: url("../ ../../src/assets/mobilebg.png");
+  background-size: 30rem;
+  background-position: top;
+  background-repeat: no-repeat;
+
   div {
     display: flex;
     flex-direction: column;
@@ -34,12 +56,12 @@
   }
   @include md {
     height: 70vh;
-    background-image: url("../../../src/assets/bg-food.png");
-    background-position: right;
+    background-image: url("../../../src/assets/bg.png");
+    background-position: 80%;
     background-repeat: no-repeat;
     background-size: 30rem;
     align-items: flex-start;
-    padding-top: 6rem;
+    padding-top: 7rem;
     padding-bottom: 2rem;
     div {
       gap: 0;
@@ -59,6 +81,7 @@
   font-weight: 500;
   width: 100%;
   text-align: center;
+  color: white;
   @include md {
     text-align: left;
     width: 60%;
@@ -97,8 +120,8 @@
 }
 
 .search__input:focus {
-  border: 2px solid $dark-orange;
-  outline: $dark-orange;
+  border: 2px solid $dark-olive;
+  outline: $dark-olive;
 }
 
 .search__btn {
@@ -108,7 +131,7 @@
     width: 20rem;
   }
   display: block !important;
-  background-color: $dark-orange !important;
+  background-color: $dark-olive !important;
   border-radius: 20px !important;
   height: 3rem;
 }

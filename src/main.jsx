@@ -7,7 +7,6 @@ import "./sass/main.scss"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-
     <Provider store={store}>
       <Routing />
     </Provider>

@@ -48,9 +48,10 @@ function Auth() {
         })
         console.log(data, error)
         if (data.user) {
+            sessionStorage.setItem("accessToken",data.session.access_token)
             dispatch(getUserData(data.user))
             navigate("/")
-            dispatch(showAuth({ howAuthForm: false }))
+            dispatch(showAuth(false))
             return "Logged in successfully"
         }
 
@@ -65,7 +66,7 @@ function Auth() {
     }
 
     const handleClose = () => {
-        dispatch(showAuth({ showAuthForm: false }))
+        dispatch(showAuth(false))
     }
     return (
         <div className="auth__wrapper">
