@@ -1,14 +1,15 @@
 import * as React from 'react';
 import logo from "../assets/pineapple.png"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFetchMealByNameQuery } from "../store/meals-api-slice"
 import { useEffect, useState } from "react";
 import RightDrawer from "./RightDrawer";
 import { useDispatch, useSelector } from "react-redux";
-import { showAuth } from "../store/features/authSlice";
+import { getUserData, showAuth } from "../store/features/authSlice";
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import supabase from "../superBaseSetup"
 
 import Fade from '@mui/material/Fade';
 function Navbar() {
@@ -18,6 +19,7 @@ function Navbar() {
     const dispatch = useDispatch()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const navigate = useNavigate()
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -26,7 +28,7 @@ function Navbar() {
     };
 
     const displayName = useSelector(state => {
-        if (state.auth.userData)
+        if (state.auth.userData!==null)
             return state.auth.userData.user_metadata.name
     })
 
@@ -60,6 +62,14 @@ function Navbar() {
     }
 
     const throttleSearch = throttle(handleSearchquery, 300)
+
+    async function signOut() {
+        const { error } = await supabase.auth.signOut()
+        console.log("logout", error)
+        dispatch(getUserData(null))
+        navigate("/")
+    }
+
 
     useEffect(() => {
         if (name === "") {
@@ -102,7 +112,7 @@ function Navbar() {
                 </div>
                 <div className='nav__auth'>
                     {
-                        displayName !== undefined ?
+                        displayName !== undefined && displayName !== null ?
                             <div>
                                 <Button
                                     id="fade-button"
@@ -113,9 +123,7 @@ function Navbar() {
                                     aria-expanded={open ? 'true' : undefined}
                                     onClick={handleClick}
                                 >
-                                    {/* <div className="avatar" title={displayName}> */}
                                     <img src="https://media.istockphoto.com/id/1213035740/vector/super-chef-logo-cooking-template-the-hero-proudly-folded-his-paws-funny-panda-character.jpg?s=612x612&w=0&k=20&c=rZ-sGB2nYUoW2GYKxRoqrnlkPMni6GRorVEnVHUTC6c=" alt={displayName} />
-                                {/* </div>                                  */}
                                 </Button>
                                 <Menu
                                     id="fade-menu"
@@ -127,13 +135,10 @@ function Navbar() {
                                     onClose={handleClose}
                                     TransitionComponent={Fade}
                                 >
-                                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                    <MenuItem onClick={handleClose} disabled>{displayName}</MenuItem>
                                     <MenuItem onClick={handleClose}>My account</MenuItem>
-                                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                    <MenuItem onClick={signOut}>Logout</MenuItem>
                                 </Menu>
-                                {/* <div className="avatar" title={displayName}>
-                                    <img src="https://media.istockphoto.com/id/1213035740/vector/super-chef-logo-cooking-template-the-hero-proudly-folded-his-paws-funny-panda-character.jpg?s=612x612&w=0&k=20&c=rZ-sGB2nYUoW2GYKxRoqrnlkPMni6GRorVEnVHUTC6c=" alt={displayName} />
-                                </div> */}
                             </div>
                             :
                             <div>

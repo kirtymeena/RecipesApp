@@ -39,6 +39,7 @@ p {
 .link {
   text-decoration: none;
   color: $neutral-800;
+  cursor: pointer;
 }
 .link:hover {
   color: $dark-orange;
