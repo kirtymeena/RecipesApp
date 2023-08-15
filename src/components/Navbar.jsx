@@ -1,4 +1,4 @@
-// import React from 'react'
+import * as React from 'react';
 import logo from "../assets/pineapple.png"
 import { Link } from 'react-router-dom'
 import { useFetchMealByNameQuery } from "../store/meals-api-slice"
@@ -6,18 +6,27 @@ import { useEffect, useState } from "react";
 import RightDrawer from "./RightDrawer";
 import { useDispatch, useSelector } from "react-redux";
 import { showAuth } from "../store/features/authSlice";
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
+import Fade from '@mui/material/Fade';
 function Navbar() {
     const [name, setName] = useState(null)
     const [selectedSearchQuery, setSelectedSearchQuery] = useState(false)
     const { data, isFetching } = useFetchMealByNameQuery(name);
     const dispatch = useDispatch()
-    const isLoggedIn = useSelector((state) => {
-        return state.auth.userData
-    })
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const displayName = useSelector(state => {
-        if (state.auth.userData.length > 0)
+        if (state.auth.userData)
             return state.auth.userData.user_metadata.name
     })
 
@@ -57,6 +66,9 @@ function Navbar() {
             setName(null)
         }
     }, [name])
+    useEffect(() => {
+        console.log(displayName)
+    }, [displayName])
     return (
         <nav className='navbar'>
             <div className='logo'>
@@ -89,19 +101,54 @@ function Navbar() {
                     </div>
                 </div>
                 <div className='nav__auth'>
-                    <div>
-                        <span className="link" onClick={() => !isLoggedIn && dispatch(showAuth({ showAuthForm: true }))}>
-                            <span className="avatar">avatar</span>
+                    {
+                        displayName !== undefined ?
+                            <div>
+                                <Button
+                                    id="fade-button"
+                                    title={displayName}
+                                    className='avatar'
+                                    aria-controls={open ? 'fade-menu' : undefined}
+                                    aria-haspopup="true"
+                                    aria-expanded={open ? 'true' : undefined}
+                                    onClick={handleClick}
+                                >
+                                    {/* <div className="avatar" title={displayName}> */}
+                                    <img src="https://media.istockphoto.com/id/1213035740/vector/super-chef-logo-cooking-template-the-hero-proudly-folded-his-paws-funny-panda-character.jpg?s=612x612&w=0&k=20&c=rZ-sGB2nYUoW2GYKxRoqrnlkPMni6GRorVEnVHUTC6c=" alt={displayName} />
+                                {/* </div>                                  */}
+                                </Button>
+                                <Menu
+                                    id="fade-menu"
+                                    MenuListProps={{
+                                        'aria-labelledby': 'fade-button',
+                                    }}
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleClose}
+                                    TransitionComponent={Fade}
+                                >
+                                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                </Menu>
+                                {/* <div className="avatar" title={displayName}>
+                                    <img src="https://media.istockphoto.com/id/1213035740/vector/super-chef-logo-cooking-template-the-hero-proudly-folded-his-paws-funny-panda-character.jpg?s=612x612&w=0&k=20&c=rZ-sGB2nYUoW2GYKxRoqrnlkPMni6GRorVEnVHUTC6c=" alt={displayName} />
+                                </div> */}
+                            </div>
+                            :
+                            <div>
+                                <span className="link" onClick={() => dispatch(showAuth({ showAuthForm: true }))}>
+                                    Login/Register
+                                </span>
+                            </div>
 
-                        </span>
-                    </div>
-
+                    }
                 </div>
                 <div className="hamburger">
                     <RightDrawer />
                 </div>
             </div>
-        </nav>
+        </nav >
     )
 }
 
