@@ -6,8 +6,8 @@ body {
   height: 100%;
 }
 
-.topContainer{
-  padding-top:7rem;
+.topContainer {
+  padding-top: 7rem;
 }
 
 .container {
@@ -59,6 +59,10 @@ p {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  padding-top:10rem
+  padding-top: 10rem;
 }
 
+.overlay-active {
+  height: 100vh;
+  overflow: hidden;
+}

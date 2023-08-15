@@ -4,12 +4,22 @@ import { Link } from 'react-router-dom'
 import { useFetchMealByNameQuery } from "../store/meals-api-slice"
 import { useEffect, useState } from "react";
 import RightDrawer from "./RightDrawer";
-import { signInWithGoogle } from "../firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { showAuth } from "../store/features/authSlice";
 
 function Navbar() {
     const [name, setName] = useState(null)
     const [selectedSearchQuery, setSelectedSearchQuery] = useState(false)
     const { data, isFetching } = useFetchMealByNameQuery(name);
+    const dispatch = useDispatch()
+    const isLoggedIn = useSelector((state) => {
+        return state.auth.userData
+    })
+
+    const displayName = useSelector(state => {
+        if (state.auth.userData.length > 0)
+            return state.auth.userData.user_metadata.name
+    })
 
     const handleSearchquery = (e) => {
         setName(e.target.value)
@@ -80,12 +90,14 @@ function Navbar() {
                 </div>
                 <div className='nav__auth'>
                     <div>
-                        <Link to="/auth" className="link">Login/Sign up</Link>
+                        <span className="link" onClick={() => !isLoggedIn && dispatch(showAuth({ showAuthForm: true }))}>
+                            <span className="avatar">avatar</span>
+
+                        </span>
                     </div>
 
                 </div>
                 <div className="hamburger">
-                    {/* <MenuIcon /> */}
                     <RightDrawer />
                 </div>
             </div>

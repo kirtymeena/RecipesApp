@@ -1,0 +1,47 @@
+@use "../utils/breakpoint" as *;
+@use "../utils/variables" as *;
+
+.auth__wrapper {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: rgba(240, 240, 240, 0.699);
+  z-index: 1000;
+}
+
+.auth__form {
+  background-color: white;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  width: 20rem;
+  gap: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  @include md {
+    width: 30rem;
+  }
+}
+
+.form__header {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.form__link {
+  cursor: pointer;
+  color: $blue-600;
+}
+.form__link:hover {
+  text-decoration: underline;
+}
+
+button {
+  background-color: $dark-orange !important;
+}

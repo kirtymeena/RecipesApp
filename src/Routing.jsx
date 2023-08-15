@@ -5,13 +5,25 @@ import CategoryList from "./pages/CategoryList"
 import Footer from "./components/Footer"
 import Meal from "./pages/Meal"
 import Auth from "./auth/Auth"
+import { useSelector } from "react-redux"
+import { useState } from "react"
 
 function Routing() {
+
+  const showForm = useSelector(state => {
+    return state.auth.showAuthForm.showAuthForm
+  })
   const Layout = () => {
     return (
       <div className="layout">
         <Navbar />
-        <Outlet />
+        <div className={`${showForm ? "overlay-active" : ""}`}>
+          {
+            showForm &&
+            <Auth />
+          }
+          <Outlet />
+        </div>
         <Footer />
       </div>
     )

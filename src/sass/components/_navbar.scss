@@ -7,7 +7,8 @@
   border-bottom: 2px solid $ghost-white;
   width: 100%;
   height: 4rem;
-  background-color: $alice-blue;
+  // background-color: $alice-blue;
+  background-color: $bg-home;
   padding-inline: 2rem;
   padding-block: 1rem;
   z-index: 100;
@@ -98,4 +99,12 @@
   .meal__search {
     border-bottom: 2px solid rgb(231, 231, 231);
   }
+}
+
+
+.avatar{
+  border:2px solid red;
+  border-radius:50%;
+  aspect-ratio: 1;
+  padding:0.5rem
 }
