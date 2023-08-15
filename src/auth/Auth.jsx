@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import supabase from "../superBaseSetup"
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -29,6 +29,9 @@ function Auth() {
                 }
             })
             console.log(data, error)
+            if(data){
+                alert("Account has been created!")
+            }
         }
         catch (err) {
             alert(err)
