@@ -29,8 +29,8 @@ function Auth() {
                 }
             })
             console.log(data, error)
-            if(data){
-                alert("Account has been created!")
+            if (data) {
+                alert("Account has been created! Please check your mail for verification mail")
             }
         }
         catch (err) {
