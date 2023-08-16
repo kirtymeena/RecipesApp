@@ -29,15 +29,14 @@
   background-repeat: no-repeat;
   background-position: 50% 0;
   background-size: cover;
-  @include md{
-    background-image: none
-
+  @include md {
+    background-image: none;
   }
 }
 .home__wrapper {
   width: 100%;
   height: 90vh;
-  background-color: #009688;
+  background-color: #4b8c66;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,7 +55,7 @@
   }
   @include md {
     height: 70vh;
-    background-image: url("../../../src/assets/bg.png");
+    background-image: url("../../../src/assets/bg-lg.png");
     background-position: 80%;
     background-repeat: no-repeat;
     background-size: 30rem;
