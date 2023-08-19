@@ -4,6 +4,7 @@
 body {
   font-family: "Roboto", sans-serif;
   height: 100%;
+  color:$neutral-800
 }
 
 .topContainer {
@@ -43,6 +44,7 @@ p {
 }
 .link:hover {
   color: $dark-olive;
+  font-weight: 500;
 }
 
 .layout {
@@ -66,4 +68,16 @@ p {
 .overlay-active {
   height: 100vh;
   overflow: hidden;
+}
+
+.link-white{
+  color:white;
+  opacity: 0.9;
+}
+
+.fw-400{
+  font-weight: 400;
+}
+.fs-18{
+  font-size: 18px;
 }

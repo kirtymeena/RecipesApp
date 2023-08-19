@@ -8,15 +8,17 @@ import Auth from "./auth/Auth"
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
 
+
 function Routing() {
 
   const showForm = useSelector(state => {
-    if(state.auth!==undefined)
+    if (state.auth !== undefined)
       return state.auth.showAuthForm
   })
 
+
   useEffect(() => {
-    console.log("form",showForm)
+    console.log("form", showForm)
   })
   const Layout = () => {
     return (
