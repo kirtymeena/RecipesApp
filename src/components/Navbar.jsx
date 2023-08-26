@@ -1,38 +1,22 @@
-import * as React from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useFetchMealByNameQuery } from "../store/meals-api-slice"
 import { useEffect, useState } from "react";
-import RightDrawer from "./RightDrawer";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserData, showAuth } from "../store/features/authSlice";
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import supabase from "../superBaseSetup"
 
-import Fade from '@mui/material/Fade';
 function Navbar() {
     const [name, setName] = useState(null)
     const [selectedSearchQuery, setSelectedSearchQuery] = useState(false)
     const { data, isFetching } = useFetchMealByNameQuery(name);
-    const dispatch = useDispatch()
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
-    const navigate = useNavigate()
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const displayName = useSelector(state => {
-        if (state.auth.userData !== null)
-            return state.auth.userData.user_metadata.name
-    })
+    const [showDropdown, setDropdown] = useState(false)
 
     const handleSearchquery = (e) => {
-        setName(e.target.value)
+        if (e.target.value.length >= 3) {
+            setName(e.target.value)
+        }
+        else {
+            setName("")
+            return
+        }
+
     }
 
     function throttle(cb, delay) {
@@ -62,23 +46,19 @@ function Navbar() {
 
     const throttleSearch = throttle(handleSearchquery, 300)
 
-    async function signOut() {
-        const { error } = await supabase.auth.signOut()
-        console.log("logout", error)
-        dispatch(getUserData(null))
-        navigate("/");
-        window.location.reload();
-    }
-
-
     useEffect(() => {
         if (name === "") {
             setName(null)
+            console.log("null")
         }
+        console.log("name", name)
     }, [name])
+
     useEffect(() => {
-        console.log(displayName)
-    }, [displayName])
+        console.log("name --", name)
+    })
+
+
     return (
         <nav className='navbar'>
             <div className='logo'>
@@ -89,70 +69,29 @@ function Navbar() {
             <div className='nav__links'>
                 <div className='nav__options'>
                     <div>
-                        <Link to="/" className="link  fw-400">Order Food</Link>
-                    </div>
-                    <div>
                         <Link to="/" className="link fw-400">Recipes</Link>
                     </div>
                 </div>
                 <div className="nav__search">
-                    <input onFocus={() => setSelectedSearchQuery(false)} type="search" onChange={(e) => e.target.value.length > 2 && throttleSearch(e)} className="search__bar" placeholder="Search a Recipe" />
-                    <div className="search__result">
-                        {
-                            !isFetching && data.meals !== null && data.meals.map(result =>
-                                <Link style={{ display: selectedSearchQuery ? "none" : "" }} onClick={() => setSelectedSearchQuery(true)} to={`/${result.strCategory}/${result.strMeal}/${result.idMeal}`} key={result.idMeal} className="link">
-                                    <div className="meal__search" >
-                                        {result.strMeal}
-                                        <div>
-                                            <img src={result.strMealThumb} alt="meal" />
-                                        </div>
-                                    </div>
-                                </Link>
-                            )
-                        }
-                    </div>
-                </div>
-                <div className='nav__auth'>
+                    <input onFocus={() => setSelectedSearchQuery(false)} type="search" onChange={(e) => throttleSearch(e)} className="search__bar" placeholder="Search a Recipe" />
                     {
-                        displayName !== undefined && displayName !== null ?
-                            <div>
-                                <Button
-                                    id="fade-button"
-                                    title={displayName}
-                                    className='avatar'
-                                    aria-controls={open ? 'fade-menu' : undefined}
-                                    aria-haspopup="true"
-                                    aria-expanded={open ? 'true' : undefined}
-                                    onClick={handleClick}
-                                >
-                                    <img src="https://media.istockphoto.com/id/1213035740/vector/super-chef-logo-cooking-template-the-hero-proudly-folded-his-paws-funny-panda-character.jpg?s=612x612&w=0&k=20&c=rZ-sGB2nYUoW2GYKxRoqrnlkPMni6GRorVEnVHUTC6c=" alt={displayName} />
-                                </Button>
-                                <Menu
-                                    id="fade-menu"
-                                    MenuListProps={{
-                                        'aria-labelledby': 'fade-button',
-                                    }}
-                                    anchorEl={anchorEl}
-                                    open={open}
-                                    onClose={handleClose}
-                                    TransitionComponent={Fade}
-                                >
-                                    <MenuItem onClick={handleClose} disabled>{displayName}</MenuItem>
-                                    <MenuItem onClick={handleClose}>Bookmarks</MenuItem>
-                                    <MenuItem onClick={signOut}>Logout</MenuItem>
-                                </Menu>
-                            </div>
-                            :
-                            <div>
-                                <span className="link fw-400" onClick={() => dispatch(showAuth(true))}>
-                                    Login/Register
-                                </span>
-                            </div>
+                        name !== null && name.length === 3 &&
 
+                        < div className="search__result">
+                            {
+                                !isFetching && data.meals !== null && data.meals.map(result =>
+                                    <Link style={{ display: selectedSearchQuery ? "none" : "" }} onClick={() => setSelectedSearchQuery(true)} to={`/${result.strCategory}/${result.strMeal}/${result.idMeal}`} key={result.idMeal} className="link">
+                                        <div className="meal__search" >
+                                            {result.strMeal}
+                                            <div>
+                                                <img src={result.strMealThumb} alt="meal" />
+                                            </div>
+                                        </div>
+                                    </Link>
+                                )
+                            }
+                        </div>
                     }
-                </div>
-                <div className="hamburger">
-                    <RightDrawer />
                 </div>
             </div>
         </nav >

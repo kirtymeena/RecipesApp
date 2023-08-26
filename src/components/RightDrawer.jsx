@@ -6,8 +6,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { showAuth } from "../store/features/authSlice";
+
 function RightDrawer() {
+    const dispatch = useDispatch()
+
     const [state, setState] = React.useState({
         right: false,
     });
@@ -28,7 +32,6 @@ function RightDrawer() {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-
                 <ListItem disablePadding>
                     <ListItemButton>
                         <ListItemText primary={"Order Food"} />
@@ -41,12 +44,9 @@ function RightDrawer() {
                 </ListItem>
                 <ListItem disablePadding>
                     <ListItemButton>
-                        <Link to="/auth" className='link'>
-                            <ListItemText primary={"Login/Register"} />
-                        </Link>
+                        <ListItemText primary={"Login/Register"} onClick={() => dispatch(showAuth(true))} />
                     </ListItemButton>
                 </ListItem>
-
             </List>
 
         </Box>

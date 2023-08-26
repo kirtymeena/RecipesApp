@@ -4,12 +4,23 @@ import { useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import coffeeMug from "../assets/takeawayCoffee.png"
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useDispatch, useSelector } from "react-redux";
+import { isBookmarked } from "../store/features/bookmarkSlice";
+import supabase from "../superBaseSetup";
+
 function Meal() {
     const { id } = useParams();
     const { data, isFetching } = useFetchMealByIdQuery(id);
     const [emabedId, setEmbedId] = useState('')
     const [ingredients, setIngredients] = useState([])
-    const [measures, setmeasures] = useState([])
+    const [measures, setmeasures] = useState([]);
+    const [favorite, setfavorite] = useState(false)
+    const dispatch = useDispatch();
+    const bookmark = useSelector(state => {
+        return state.bookmark.bookmark
+    });
+
     useEffect(() => {
         console.log(data)
         getEmbedId()
@@ -19,11 +30,17 @@ function Meal() {
     }, [!isFetching])
 
 
+    useEffect(() => {
+    }, [favorite])
+
+
+    const updateBookmark = () => {
+    }
+
     const getEmbedId = () => {
         if (data !== undefined) {
             console.log(data.meals[0].strYoutube.split("=")[1])
             setEmbedId(data.meals[0].strYoutube.split("=")[1])
-
         }
     }
 
@@ -48,11 +65,8 @@ function Meal() {
         setmeasures(measureList);
     }
 
-
     const getRecipe = () => {
-
         return data.meals[0].strInstructions.split(".");
-
     }
 
     return (
@@ -67,7 +81,13 @@ function Meal() {
                     <div className="instructions">
                         <p className="meal-title">{data.meals[0].strMeal}</p>
                         <div className="bookmark">
-                            <FavoriteBorderOutlinedIcon titleAccess="Add to favorite" />
+                            {
+                                favorite ?
+                                    <FavoriteIcon titleAccess="Favorite" onClick={updateBookmark} />
+                                    :
+                                    <FavoriteBorderOutlinedIcon titleAccess="Add to favorite" onClick={updateBookmark} />
+                            }
+
                         </div>
                         <div className="meal__image">
                             <img src={data.meals[0].strMealThumb} alt="meal" />
