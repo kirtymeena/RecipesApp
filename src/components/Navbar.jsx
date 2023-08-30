@@ -9,7 +9,7 @@ function Navbar() {
     const [showDropdown, setDropdown] = useState(false)
 
     const handleSearchquery = (e) => {
-        if (e.target.value.length >= 3) {
+        if (e.target.value.length >=2   ) {
             setName(e.target.value)
         }
         else {
@@ -75,9 +75,9 @@ function Navbar() {
                 <div className="nav__search">
                     <input onFocus={() => setSelectedSearchQuery(false)} type="search" onChange={(e) => throttleSearch(e)} className="search__bar" placeholder="Search a Recipe" />
                     {
-                        name !== null && name.length === 3 &&
+                        name !== null && name.length >= 3 &&
 
-                        < div className="search__result">
+                        <div className="search__result">
                             {
                                 !isFetching && data.meals !== null && data.meals.map(result =>
                                     <Link style={{ display: selectedSearchQuery ? "none" : "" }} onClick={() => setSelectedSearchQuery(true)} to={`/${result.strCategory}/${result.strMeal}/${result.idMeal}`} key={result.idMeal} className="link">

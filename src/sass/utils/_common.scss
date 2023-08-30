@@ -81,3 +81,11 @@ p {
 .fs-18{
   font-size: 18px;
 }
+
+.loader{
+  min-height:100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

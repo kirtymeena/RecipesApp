@@ -29,9 +29,14 @@ export const apiSlice = createApi({
                 query(name) {
                     return `search.php?s=${name}`
                 }
+            }),
+            fetchRandomMeal: builder.query({
+                query() {
+                    return `/random.php`
+                }
             })
         }
     }
 });
 
-export const { useFetchCategoryQuery, useFetchMealByCategoryQuery, useFetchMealByIdQuery, useFetchMealByNameQuery } = apiSlice;
+export const { useFetchCategoryQuery, useFetchMealByCategoryQuery, useFetchMealByIdQuery, useFetchMealByNameQuery, useFetchRandomMealQuery } = apiSlice;

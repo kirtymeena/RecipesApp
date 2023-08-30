@@ -1,18 +1,17 @@
 // import React from 'react'
+import { useEffect, useRef } from 'react';
 import Button from '@mui/material/Button';
 import Categories from './Categories';
+import { useFetchRandomMealQuery } from "../store/meals-api-slice"
+import { useNavigate } from 'react-router-dom';
 
-import { useRef, useState } from 'react';
 function Home() {
-    const [showAlert, setShowAlert] = useState(true)
     const refCategory = useRef();
-
-
-
-    const scrollToCategory = () => {
-        refCategory.current.scrollIntoView({ behavior: "smooth" });
-    }
-
+    const navigate = useNavigate()
+    const { data: randomMeal, isFetching: fetchRandomMeal } = useFetchRandomMealQuery();
+    useEffect(() => {
+        console.log("randomMeal", !fetchRandomMeal && randomMeal.meals[0])
+    })
 
     return (
         <div className='home'>
@@ -26,7 +25,7 @@ function Home() {
 
                     <div className="search__option-flex">
                         <div>
-                            <Button className='search__btn' variant="outlined">Random Recipe</Button>
+                            <Button className='search__btn' variant="outlined" onClick={() => !fetchRandomMeal && navigate(`/${randomMeal.meals[0].strCategory}/${randomMeal.meals[0].strMeal}/${randomMeal.meals[0].idMeal}`)}>Random Recipe</Button>
                         </div>
                     </div>
                 </div>
